@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:getx_project/counter_controller.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -8,7 +9,7 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  late final int count;
+  final CounterController controller = CounterController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,20 +19,36 @@ class _HomepageState extends State<Homepage> {
         backgroundColor: Colors.blue,
       ),
 
-      body: Column(
-        children: [
-          Text("")
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+
+          children: [
+
+            Text("${controller.count}"),
+            ElevatedButton(onPressed: () {}, child: Text("Profile Page"))
+
+          ],
+        ),
       ),
         floatingActionButton: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             FloatingActionButton(onPressed: () {
-              count++;
+              controller.isDecrement();
+              setState(() {
+
+              });
+              print("${controller.count}");
             },
               child: Icon(Icons.remove),),
             FloatingActionButton(onPressed: () {
-              count++;
+              controller.isIncrement();
+              setState(() {
+                
+              });
+              print("${controller.count}");
             },
               child: Icon(Icons.add),)
           ],
